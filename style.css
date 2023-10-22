@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+/* css base start */
+*{
+    margin: 0;
+}
+
+body{
+    font-family: 'Orbitron', sans-serif;
+}
+
+.container{
+    background-color: black;
+    color: white;
+}
+/* css base end */
+
+/* navbar start */
+.navbar{
+    background-color: black;
+    color: white;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    /* sadece position sticky ile çalışmadı navbarın scroll ile aşağıya gelmesi.
+    top 0 da koymamız gerekiyor. */
+    z-index: 1;
+    /* z index 1 ile navbarımız fimlerin üstünde kalmış oldu */
+}
+
+.navbar-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 50px;
+}
+
+.logo{
+    color: rgb(255, 32, 32);
+}
+
+.logo span{
+    color: rgb(220, 143, 0);
+}
+
+.menu-list{
+    display: flex;
+    list-style: none;
+    column-gap: 30px;
+    padding: 0;
+}
+
+.menu-list-items{
+    cursor: pointer;
+}
+
+.menu-list-items:hover{
+    font-weight: bold;
+}
+
+.menu-list-items.active{
+    font-weight: bold;
+}
+
+.profie-container{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-pic{
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-text-container{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.profile-text-container span:hover{
+    cursor: pointer;
+}
+
+.toggle{
+    width: 40px;
+    background-color: white;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 30px;
+    position: relative;
+    /* 3-aşağıda position işlemlerinden sonra toggle ball kayboldu,
+    biz ay ve güneş alanının içinde kalmasını, oraya hapsolmasını 
+    istiyoruz. o yüzden position relative kullandık kapsayıcısında */
+}
+
+.toggle-icon{
+    color: goldenrod;
+}
+
+.toggle-ball{
+    width: 18px;
+    height: 18px;
+    background-color: black;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    /* 1-position absolute ile pozisyonunu ekseninden çıkarttık */
+    right: 1px;
+    /* 2-ekseninden çıkarttıktan sonra sağa 1 px yaklaştırıyoruz  */
+    transition: .5s ease all;
+}
+/* navbar end */
+
+/* sidebar start */
+.sidebar{
+    background-color: black;
+    color: white;
+    height: 100%;
+    /* yukarıdan aşağıya tamamen uzasın istedik o yüzden height 100%
+    ama bunu alması için body'nin yüksekliğine height 100 vh verdik  */
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 140px;
+    row-gap: 40px;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    /* position fixed ve top 0 ile birlikte, sidebarımız aynı navbar gibi
+    scroll ile aşağı geliyor */
+}
+
+.sidebar i{
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+/* sidebar end */
+
+/* featured start */
+.content-wrapper{
+    margin-left: 40px;
+    /* sidebarın genişliği 40px olduğu için
+    bunu margin left 40px ile soldan sağa getirdik.  */
+}
+
+.featured-content{
+    background: url(img/lotr6.jpg);
+    padding: 50px;
+    height: calc(100vh - 160px);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.featured-title{
+    width: 350px;
+}
+
+.featured-desc{
+    width: 600px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 20px;
+    text-align: justify;
+    color: black;
+}
+
+.featured-buttons button{
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgba(97, 85, 85, 0.603);
+    color: white
+}
+
+.featured-buttons button:hover{
+    background-color: rgb(97, 85, 85);
+}
+/* featured end */
+
+/* filter start */
+.movie-list-filter{
+    margin: 20px 50px;
+    padding: 20px;
+}
+
+.movie-list-filter select{
+    background-color: black;
+    color: white;
+    padding: 7px;
+    width: 200px;
+    border-radius: 50px;
+}
+/* filter end */
+
+/* movie list start */
+.movie-list-container{
+    margin-left: 70px;
+}
+
+.movie-list{
+    list-style: none;
+    padding: 0;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    transform: translateX(0);
+    transition: 1s all ease-in-out;
+}
+
+.movie-list-wrapper{
+    overflow: hidden;
+    /* alttaki sağdan sola giden scrollu kapattık */
+    position: relative;
+}
+
+.movie-item-img{
+    width: 270px;
+    height: 270px;
+    object-fit: cover;
+}
+
+.movie-item{
+    position: relative;
+}
+
+.movie-item:hover .movie-item-title,
+.movie-item:hover .movie-item-buttons{
+    opacity: 1;
+}
+
+.movie-item:hover .movie-item-img{
+    transform: scale(1.2);
+    margin: 0 30px;
+    transition: 1s all ease-in-out;
+    opacity: 0.5;
+}
+
+.movie-item-title{
+    background-color: rgb(40, 40, 40, 0.4);
+    padding: 0 10px;
+    font-size: 25px;
+    font-weight: bold;
+    position: absolute;
+    top: 10%;
+    opacity: 0;
+}
+
+.movie-info{
+    display: flex;
+    justify-content: center;
+}
+
+.movie-item-buttons{
+    background-color: rgb(40, 40, 40, 0.4);
+    padding: 10px;
+    /* font-size: 28px; */
+    font-weight: bold;
+    position: absolute;
+    bottom: 10%;
+    left: 73px;
+    display: flex;
+    gap: 15px;
+    opacity: 0;
+    transition: 1s all ease-in-out;
+}
+
+.movie-item-buttons i{
+    cursor: pointer;
+    opacity: 0.5;
+    font-size: 20px;
+    transition: 0.5s all ease;
+}
+
+.movie-item-buttons i:hover{
+    opacity: 1;
+}
+
+.arrow{
+    width: 100px;
+    display: flex;
+    font-size: 120px;
+    position: absolute;
+    /* kapsayıcısı olan movie list wrappera position relative verdik ki
+    ok yukarıya çıkmasın, istediğimiz yerde kalsın */
+    right: 0;
+    top: 85px;
+    opacity: .5;
+    transition: 0.5s all ease;
+    cursor: pointer;
+}
+
+.arrow:hover{
+    opacity: 1;
+}
+/* movie list end */
+
+/* dark mode start */
+.container.active{
+    background-color: white
+}
+
+.navbar.active{
+    background-color: white;
+    color: black;
+}
+
+.sidebar.active{
+    background-color: white;
+}
+
+.sidebar i.active{
+    color: black;
+}
+
+.movie-list-title.active{
+    color: black;
+}
+
+.toggle.active{
+    background-color: black;
+}
+
+.toggle-ball.active{
+    background-color: white;
+    transform: translateX(-20px);
+}
+
+.movie-list-filter select.active{
+    background-color: white;
+    color: black;
+}
+/* dark mode end */
+
+/* responsive start */
+@media only screen and (max-width: 958px) {
+    .menu-container{
+        display: none;
+    }
+
+    .featured-content{
+        height: 50vh;
+    }
+
+    .featured-title{
+        width: 200px;
+    }
+
+    .featured-desc{
+        /* overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        max-width: 200px;
+        padding: 0; */
+        display: none;
+    }
+
+    
+}
+
+/* responsive end */
